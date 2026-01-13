@@ -33,6 +33,7 @@ nav{
   top:0;
   background:rgba(10,10,20,.6);
   backdrop-filter:blur(10px);
+  z-index:10;
 }
 .logo{font-size:22px;font-weight:800;color:var(--secondary);}
 nav ul{display:flex;gap:30px;}
@@ -47,7 +48,7 @@ nav a:hover{color:var(--primary);}
 }
 .hero h1{font-size:48px;font-weight:800;}
 .hero h1 span{color:var(--primary);}
-.hero p{margin-top:15px;color:#bbb;}
+.hero p{margin-top:15px;color:#bbb;line-height:1.6;}
 
 /* SECTION TITLE */
 .section-title{
@@ -56,49 +57,74 @@ nav a:hover{color:var(--primary);}
   margin-top:60px;
 }
 
-/* GAME BLOCKS */
+/* GAME GRID */
 .container{
   padding:30px 8%;
   display:grid;
-  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:25px;
 }
 
 .game{
   background:linear-gradient(160deg,#151d45,#080a15);
-  border-radius:16px;
+  border-radius:18px;
   border:1px solid rgba(255,255,255,0.1);
   padding:25px;
-  transition:.3s;
-  cursor:pointer;
+  transition:.35s;
   position:relative;
+  overflow:hidden;
 }
+
+.game::after{
+  content:"";
+  position:absolute;
+  top:-40%;
+  left:-40%;
+  width:180%;
+  height:180%;
+  background:radial-gradient(circle,rgba(126,48,255,.25),transparent 60%);
+  opacity:0;
+  transition:.4s;
+}
+
+.game:hover::after{opacity:1;}
 .game:hover{
-  transform:translateY(-4px);
+  transform:translateY(-6px) scale(1.01);
   border-color:var(--secondary);
 }
 
 .game h3{
   font-size:22px;
-  margin-bottom:8px;
+  margin-bottom:6px;
 }
 .game small{color:var(--secondary);}
-.game .short{
+.short{
   margin-top:10px;
   color:#aaa;
+  line-height:1.5;
 }
 
-/* expandable */
-.details{
-  margin-top:12px;
-  display:none;
-  color:#ccc;
-  line-height:1.6;
+/* BUTTON */
+.btn{
+  margin-top:18px;
+  display:inline-block;
+  padding:10px 18px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.2);
+  text-decoration:none;
+  color:white;
+  transition:.3s;
+  font-size:14px;
 }
-.show{display:block;}
+.btn:hover{
+  background:linear-gradient(120deg,var(--primary),var(--secondary));
+  border-color:transparent;
+}
 
+/* FOOTER */
 footer{
   text-align:center;
-  padding:40px;
+  padding:45px;
   color:#777;
   margin-top:60px;
 }
@@ -108,7 +134,6 @@ footer{
   nav ul{display:none;}
 }
 </style>
-
 </head>
 
 <body>
@@ -128,6 +153,7 @@ footer{
 Tôi tập trung vào combat feel, progression, UX flow, player motivation và cách thiết kế
 làm người chơi cảm thấy thỏa mãn, thử thách và có mục tiêu dài hạn để bám vào.
 </p>
+
 <p>
 Mục tiêu là tạo ra trải nghiệm “chơi là nghiện”, rõ ràng – có chiều sâu – có tính hệ thống.
 </p>
@@ -137,58 +163,34 @@ Mục tiêu là tạo ra trải nghiệm “chơi là nghiện”, rõ ràng –
 
 <div class="container">
 
+<!-- GAME 1 -->
 <div class="game">
   <h3>Out World Dominion</h3>
   <small>FPS Roguelite • Combat tốc độ cao</small>
-  <p class="short">Tập trung vào nhịp độ, flow chiến đấu, progression 2 tầng và boss pattern.</p>
-
-  <div class="details">
-    <b>Core Vision</b><br>
-    – Combat liên tục, ép người chơi chủ động.<br>
-    – Rogue progression có định hướng, không random vô nghĩa.<br><br>
-
-    <b>Design Pillars</b><br>
-    – Fast & Aggressive<br>
-    – Meaningful Build Choices<br>
-    – Clear Threat System<br><br>
-
-    <b>Player Experience</b><br>
-    Người chơi luôn cảm thấy mình mạnh hơn sau mỗi run,
-    mỗi quyết định buff đều có ảnh hưởng rõ ràng.
-  </div>
+  <p class="short">
+    Tập trung vào nhịp độ, flow chiến đấu, progression 2 tầng và boss pattern.
+  </p>
+  <a href="out-world-dominion.html" class="btn">View Full Case Study →</a>
 </div>
 
+<!-- GAME 2 -->
 <div class="game">
   <h3>Survival Project</h3>
-  <small>Loop sinh tồn – Resource meaningful</small>
-  <p class="short">Thiết kế core loop addictive và progression có mục tiêu rõ ràng.</p>
-
-  <div class="details">
-    <b>Core Loop</b><br>
-    Gather → Craft → Upgrade → Unlock → New Challenge<br><br>
-
-    <b>Design Focus</b><br>
-    – Không grind vô nghĩa<br>
-    – Tài nguyên có giá trị thực<br>
-    – Người chơi luôn biết mình đang hướng tới cái gì
-  </div>
+  <small>Loop sinh tồn • Resource meaningful</small>
+  <p class="short">
+    Thiết kế core loop addictive và progression có mục tiêu rõ ràng.
+  </p>
+  <a href="survival-project.html" class="btn">View Full Case Study →</a>
 </div>
 
+<!-- GAME 3 -->
 <div class="game">
   <h3>Action RPG Concept</h3>
   <small>Combat weight • Skill depth</small>
-  <p class="short">Tập trung cảm giác đánh nặng tay + hệ thống skill chiến thuật.</p>
-
-  <div class="details">
-    <b>Combat Philosophy</b><br>
-    – Animation weight<br>
-    – Feedback rõ ràng<br>
-    – Player decision quan trọng hơn chỉ spam skill<br><br>
-
-    <b>Progression</b><br>
-    – Skill tree dạng định hướng phong cách chơi<br>
-    – Build đa dạng nhưng không phá balance
-  </div>
+  <p class="short">
+    Nhấn mạnh cảm giác đánh nặng tay + hệ thống skill mang tính quyết định chiến thuật.
+  </p>
+  <a href="action-rpg.html" class="btn">View Full Case Study →</a>
 </div>
 
 </div>
@@ -196,15 +198,6 @@ Mục tiêu là tạo ra trải nghiệm “chơi là nghiện”, rõ ràng –
 <footer>
   © 2026 Shika Studio – Portfolio by Quân
 </footer>
-
-<script>
-// CLICK TO EXPAND
-document.querySelectorAll(".game").forEach(card=>{
-  card.addEventListener("click",()=>{
-    card.querySelector(".details").classList.toggle("show");
-  });
-});
-</script>
 
 </body>
 </html>
